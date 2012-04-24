@@ -1,0 +1,40 @@
+int leds[] = {6,7,8,9,10,11,12,13};
+int ct = sizeof(leds)/sizeof(int);
+int listener = 5;
+int on = 0;
+int r;
+
+void setup() {
+  Serial.begin(9600);
+  for (int i=0; i < ct; i++) {
+      pinMode(leds[i], OUTPUT);
+  }
+  pinMode(listener, INPUT);
+}
+
+
+void loop() {
+//  Serial.print(listener);
+  if (Serial.available() > 0) {
+    r = Serial.peek();
+    if (r != 0) {
+      Serial.print(r, DEC);
+    }
+    if (r == 49) {
+      Serial.flush();
+      on = on ? 0 : 1;
+    }
+  }
+  if (on) {
+        for (int i = 0; i < ct; i++) {
+      digitalWrite(leds[i], HIGH);
+      delay(100); 
+      digitalWrite(leds[i], LOW);
+    }
+    for (int i = ct-1; i >= 0; i--) {
+      digitalWrite(leds[i], HIGH);
+      delay(100); 
+      digitalWrite(leds[i], LOW);
+    }
+  }
+}
