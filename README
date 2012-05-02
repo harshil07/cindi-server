@@ -1,0 +1,2 @@
+Built this at the last NYC Startup Weekend. Won the Best Tech Solution Award. A home automation solution. Built an app that controls an arduino remotely. 
+Since we did not have the wifi enabled arduino we connected it to a PC and ran a Node.js server on it.
